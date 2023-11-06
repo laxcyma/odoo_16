@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<odoo>
+    <!-- Sequences for patients requests -->
+    <data>
+        <record id="ir_sequence_hospital_sequence_no" model="ir.sequence">
+            <field name="name">Hospital patient sequence</field>
+            <field name="prefix">SD</field>
+            <field name="code">sd.patient</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+    <!-- This structure is for create page -->
+    <record id="view_hospital_patient_from" model="ir.ui.view">
+        <field name="name">Patient view</field>
+        <field name="model">sd.patient</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1>
+                        <field name="sequence_number"/>
+                    </h1>
+                    <group>
+                        <field name="name"/>
+                        <field name="is_child"/>
+                        <field name="age"/>
+                        <field name="gender"/>
+                        <field name="time"/>
+                        <field name="doctor"/>
+                        <field name="partner"/>
+                        <field name="partner_many" widget='many2many_tags'/>
+                        <!--                        <field name="patient_id" attrs="{'required:['name',|=,False]}" />-->
+                        <field name="invoice_date">
+<!--                            action = records.action_update_invoice_date()-->
+                            button.bind('<Button-1>', lambda event: <link>records.action_update_invoice_date()</link></Button-1>)
+                        </field>
+                    </group>
+                    <!--                    <select class="js-example-basic-single" name="state" id="source2">-->
+                    <!--                        <option/>-->
+                    <!--                        <optgroup label="Alaskan/Hawaiian Time Zone">-->
+                    <!--                            <option value="AK">Alaska</option>-->
+                    <!--                            <option value="HI">Hawaii</option>-->
+                    <!--                        </optgroup>-->
+                    <!--                        <optgroup label="Pacific Time Zone">-->
+                    <!--                            <option value="CA">California</option>-->
+                    <!--                            <option value="NV">Nevada</option>-->
+                    <!--                            <option value="OR">Oregon</option>-->
+                    <!--                            <option value="WA">Washington</option>-->
+                    <!--                        </optgroup>-->
+                    <!--                    </select>-->
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- this structure is for list db values -> if this columns are visible enable tree view in technical/view/patient_tree -->
+    <record id="view_hospital_patient_tree" model="ir.ui.view">
+        <field name="name">Patient.tree</field>
+        <field name="model">sd.patient</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="arch" type="xml">
+            <form>
+                <tree>
+                    <field name="sequence_number"/>
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="gender"/>
+                </tree>
+            </form>
+        </field>
+    </record>
+
+    <!--    <field name="language_ids" widget="many2many_tags" options="{'no_open': True, 'no_create': True}"/>-->
+
+    <record id="patient_form" model="ir.actions.act_window">
+        <field name="name">Patient</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sd.patient</field>
+        <!--        <field name="view_mode">tree,form</field>-->
+        <!--        <field name="medicine" widget="many2many_tags"/>-->
+    </record>
+    <!-- <menuitem id="hospital_menu_sub_sub_1"  parent="hospital_menu_sub" name="Patient" sequence="10"/>-->
+
+</odoo>

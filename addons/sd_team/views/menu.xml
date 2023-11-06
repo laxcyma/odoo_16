@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<odoo>
+   <menuitem id="hospital_menu_parent" name="Hospital Management" sequence="10"/>
+   <menuitem id="hospital_menu_sub" name="Entry" parent="hospital_menu_parent" sequence="10" />
+   <menuitem id="hospital_menu_sub_sub_1" action="patient_form" parent="hospital_menu_sub" name="Patient" sequence="10"/>
+   <menuitem id="hospital_menu_sub_sub_2" parent="hospital_menu_sub" name="Staff" sequence="10"/>
+</odoo>

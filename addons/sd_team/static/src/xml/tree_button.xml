@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<templates>
+
+
+   <t t-extend="ListView.buttons" t-name="module_name_input_v16.buttons">
+
+
+       <t t-jquery="button.o_list_button_add" t-operation="after">
+
+
+           <button type="object" class="btn btn-primary import_your_action" style="margin-left:10px;">
+
+
+              Import
+
+
+           </button>
+
+
+       </t>
+
+
+   </t>
+
+
+</templates>
